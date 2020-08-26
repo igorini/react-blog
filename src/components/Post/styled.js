@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Post = styled.article`
-  width: 100px;
+  width: 250px;
   padding: 16px;
   text-align: center;
   border: 1px solid #eee;

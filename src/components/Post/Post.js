@@ -1,9 +1,9 @@
 import React from 'react';
 import * as Styled from './styled';
 
-const Post = () => (
+const Post = props => (
   <Styled.Post>
-    <h1>Title</h1>
+    <h1>{props.title}</h1>
     <div>
       <Styled.Author>Author</Styled.Author>
     </div>
