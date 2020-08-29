@@ -9,6 +9,7 @@ import axios from "axios";
 const Blog = () => {
   const [posts, setPosts] = useState([]);
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     axios.get('http://jsonplaceholder.typicode.com/posts')
@@ -16,12 +17,14 @@ const Blog = () => {
         .map(post => ({
           ...post,
           author: 'Igor'
-        }))));
+        }))))
+      .catch(() => setError(true));
   }, []);
 
   const postSelectedHandler = id => setSelectedPostId(id);
 
-  const postsDivs = posts.map(post => <Post
+  const postsDivs = error ? <p style={{textAlign: 'center'}}>Something went wrong</p> :
+    posts.map(post => <Post
     key={post.id}
     title={post.title}
     author={post.author}
