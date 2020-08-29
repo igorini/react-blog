@@ -13,7 +13,7 @@ const NewPost = () => {
       body: content,
       author: author
     };
-    axios.post('http://jsonplaceholder.typicode.com/posts', post)
+    axios.post('/posts', post)
       .then(response => console.log(response));
   }
 

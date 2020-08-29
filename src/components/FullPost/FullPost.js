@@ -7,12 +7,12 @@ const FullPost = props => {
 
   useEffect(() => {
     if (props.id && (!loadedPost || (loadedPost && loadedPost.id !== props.id))) {
-      axios.get('http://jsonplaceholder.typicode.com/posts/' + props.id)
+      axios.get('/posts/' + props.id)
         .then(response => setLoadedPost(response.data));
     }
   });
 
-  const deletePostHandler = () => axios.delete('http://jsonplaceholder.typicode.com/posts/' + props.id)
+  const deletePostHandler = () => axios.delete('/posts/' + props.id)
     .then(response => console.log(response));
 
   let post = <p style={{textAlign: 'center'}}>Please select a Post!</p>;
