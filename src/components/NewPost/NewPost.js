@@ -1,10 +1,21 @@
 import React, {useState} from 'react';
 import * as Styled from './styled';
+import axios from "axios";
 
 const NewPost = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('Max');
+
+  const postDataHandler = () => {
+    const post = {
+      title: title,
+      body: content,
+      author: author
+    };
+    axios.post('http://jsonplaceholder.typicode.com/posts', post)
+      .then(response => console.log(response));
+  }
 
   return (
     <Styled.NewPost>
@@ -18,7 +29,7 @@ const NewPost = () => {
         <option value="Max">Max</option>
         <option value="Manu">Manu</option>
       </select>
-      <button>Add Post</button>
+      <button onClick={postDataHandler}>Add Post</button>
     </Styled.NewPost>
   );
 };
