@@ -6,17 +6,17 @@ const FullPost = props => {
   const [loadedPost, setLoadedPost] = useState(null);
 
   useEffect(() => {
-    if (props.match.params.id && (!loadedPost || (loadedPost && loadedPost.id !== props.id))) {
+    if (props.match.params.id && (!loadedPost || (loadedPost && loadedPost.id !== +props.match.params.id))) {
       axios.get('/posts/' + props.match.params.id)
         .then(response => setLoadedPost(response.data));
     }
   });
 
-  const deletePostHandler = () => axios.delete('/posts/' + props.id)
+  const deletePostHandler = () => axios.delete('/posts/' + props.match.params.id)
     .then(response => console.log(response));
 
   let post = <p style={{textAlign: 'center'}}>Please select a Post!</p>;
-  if (props.id) {
+  if (props.match.params.id) {
     post = <p style={{textAlign: 'center'}}>Loading!</p>;
   }
   if (loadedPost) {
