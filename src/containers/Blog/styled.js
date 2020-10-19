@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-export const Posts = styled.section`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  width: 80%;
-  margin: auto;
-`;
-
 export const Blog = styled.div`
   & ul {
     list-style: none;
@@ -27,7 +19,7 @@ export const Blog = styled.div`
     color: black;
   }
   
-  & a:hover, a:active {
+  & a:hover, a:active, a.active {
     color:#fa923f
   }
 `;

@@ -6,8 +6,8 @@ const FullPost = props => {
   const [loadedPost, setLoadedPost] = useState(null);
 
   useEffect(() => {
-    if (props.id && (!loadedPost || (loadedPost && loadedPost.id !== props.id))) {
-      axios.get('/posts/' + props.id)
+    if (props.match.params.id && (!loadedPost || (loadedPost && loadedPost.id !== props.id))) {
+      axios.get('/posts/' + props.match.params.id)
         .then(response => setLoadedPost(response.data));
     }
   });
