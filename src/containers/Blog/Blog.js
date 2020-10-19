@@ -31,7 +31,15 @@ const Blog = () => {
     clicked={() => postSelectedHandler(post.id)}/>)
 
   return (
-    <div>
+    <Styled.Blog>
+      <header>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/new-post">New Post</a></li>
+          </ul>
+        </nav>
+      </header>
       <Styled.Posts>
         {postsDivs}
       </Styled.Posts>
@@ -41,7 +49,7 @@ const Blog = () => {
       <section>
         <NewPost/>
       </section>
-    </div>
+    </Styled.Blog>
   );
 };
 
