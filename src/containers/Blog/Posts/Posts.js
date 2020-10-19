@@ -21,7 +21,7 @@ const Posts = props => {
       // componentDidUpdate
       loadData();
     }
-  });
+  }, []);
 
   const loadData = () => axios.get('/posts')
     .then(response => setPosts(response.data.slice(0, 4)
