@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import * as Styled from './styled';
-import {Link} from "react-router-dom";
 import Post from "../../../components/Post/Post";
 import axios from "../../../axios";
+import FullPost from "../FullPost/FullPost";
+import {Route} from "react-router-dom";
 
-const Posts = () => {
+const Posts = props => {
   const [posts, setPosts] = useState([]);
-  const [selectedPostId, setSelectedPostId] = useState(null);
   const [error, setError] = useState(false);
 
-  const postSelectedHandler = id => setSelectedPostId(id);
+  const postSelectedHandler = id => props.history.push('/posts/' + id);
 
   useEffect(() => {
     axios.get('/posts')
@@ -22,19 +22,20 @@ const Posts = () => {
   }, []);
 
   const postsDivs = error ? <p style={{textAlign: 'center'}}>Something went wrong</p> :
-    posts.map(post => (
-      <Link to={'/' + post.id} key={post.id}>
-        <Post
-          title={post.title}
-          author={post.author}
-          clicked={() => postSelectedHandler(post.id)}/>
-      </Link>
-    ));
+    posts.map(post =>
+      <Post
+        title={post.title}
+        author={post.author}
+        clicked={() => postSelectedHandler(post.id)}/>
+    );
 
   return (
-    <Styled.Posts>
-      {postsDivs}
-    </Styled.Posts>
+    <>
+      <Styled.Posts>
+        {postsDivs}
+      </Styled.Posts>
+      <Route path={props.match.url + '/:id'} exact component={FullPost}/>
+    </>
   );
 };
 
